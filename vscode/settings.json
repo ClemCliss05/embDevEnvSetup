@@ -1,0 +1,13 @@
+{
+    "editor.formatOnSave": true,
+
+    "files.trimTrailingWhitespace": true,
+
+    "cmake.configureOnOpen": true,
+
+    "C_Cpp.default.compilerPath": "/usr/bin/arm-none-eabi-gcc",
+
+    "terminal.integrated.defaultProfile.linux": "bash",
+
+    "git.autofetch": true
+}

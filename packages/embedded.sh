@@ -2,6 +2,12 @@
 
 set -euo pipefail
 
+if [ "$EUID" -ne 0 ]; then
+    echo "Please run this script with sudo:"
+    echo "sudo ./packages/embedded.sh"
+    exit 1
+fi
+
 echo "Installing embedded development tools..."
 
 apt update

@@ -2,10 +2,15 @@
 
 set -euo pipefail
 
-echo "Updating package list..."
-apt update
+if [ "$EUID" -ne 0 ]; then
+    echo "Please run this script with sudo:"
+    echo "sudo ./packages/base.sh"
+    exit 1
+fi
 
 echo "Installing base development packages..."
+
+apt update
 
 apt install -y \
     git \
@@ -16,9 +21,6 @@ apt install -y \
     cmake \
     ninja-build \
     gdb \
-    python3 \
-    python3-pip \
-    python3-venv \
     curl \
     wget \
     unzip \
@@ -28,7 +30,6 @@ apt install -y \
     ripgrep \
     fd-find \
     tmux \
-    htop \
     btop
 
 echo "Done."

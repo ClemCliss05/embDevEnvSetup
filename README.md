@@ -1,16 +1,18 @@
 # Embedded Development Environment
 
-Debian-based workstation setup for embedded systems development.
+Debian-based workstation setup for embedded systems and connected systems development.
 
-This repository configures a complete embedded firmware development environment:
+This repository configures a complete development environment for:
 
-* ARM Cortex-M development
-* STM32 / NXP firmware development
-* C/C++ embedded projects
-* CMake + Ninja build system
-* GDB debugging
-* J-Link / OpenOCD flashing
-* VS Code development environment
+    ARM Cortex-M development
+    STM32 / NXP firmware development
+    C/C++ embedded projects
+    CMake + Ninja build system
+    GDB debugging
+    J-Link / OpenOCD flashing
+    VS Code development environment
+    Containerized development with Docker
+    Network and protocol analysis with Wireshark
 
 # 1. Prepare Debian system
 
@@ -156,6 +158,10 @@ This installs:
 * OpenOCD
 * Python development tools
 * VS Code
+* Docker
+* Docker Compose
+* Wireshark
+* TShark
 
 # 6. Configure VS Code
 
@@ -181,7 +187,31 @@ Installed extensions:
 * GitLens
 * Python
 
-# 7. Install J-Link
+# 7. Configure Docker
+
+Docker is used to run isolated development environments,
+simulators, databases and backend services.
+
+The installation includes:
+
+* Docker Engine
+* Docker Compose
+
+```bash
+docker run hello-world
+```
+
+# 8. Configure network analysis tools
+
+Wireshark and TShark are used for:
+
+    Network debugging
+    TCP/IP analysis
+    WebSocket inspection
+    OCPP traffic analysis
+    Protocol reverse engineering
+
+# 9. Install J-Link
 
 J-Link is a proprietary SEGGER tool.
 
@@ -204,7 +234,7 @@ SEGGER J-Link Commander
 J-Link>
 ```
 
-# 8. Verify environment
+# 10. Verify environment
 
 Check installed tools:
 
@@ -222,16 +252,26 @@ gdb-multiarch --version
 python3 --version
 
 code --version
+
+docker --version
+
+docker compose version
+
+wireshark --version
+
+tshark --version
 ```
 
-# 9. Ready for firmware development
+# 11. Ready for firmware development
 
 Your workstation is now ready for:
 
-* Building firmware
+* Embedded firmware development
+* Building C/C++ projects
 * Flashing microcontrollers
 * Debugging with GDB
-* Developing embedded C/C++ projects
+* Containerized development
+* Network and protocol analysis
 
 Typical workflow:
 

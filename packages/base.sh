@@ -30,6 +30,7 @@ apt install -y \
     ripgrep \
     fd-find \
     tmux \
-    btop
+    btop \
+    okular
 
 echo "Done."

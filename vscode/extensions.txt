@@ -2,8 +2,12 @@ ms-vscode.cpptools
 ms-vscode.cmake-tools
 marus25.cortex-debug
 ms-vscode.hexeditor
+
 eamodio.gitlens
-twxs.cmake
-llvm-vs-code-extensions.vscode-clangd
+github.vscode-github-actions
+
+DavidAnson.vscode-markdownlint
+github.vscode-sarif-viewer
+
 ms-python.python
 ms-python.vscode-pylance

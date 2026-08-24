@@ -19,6 +19,14 @@ apt install -y \
     openocd \
     picocom \
     usbutils \
-    udev
+    udev \
+
+echo "Installing embedded analysis tools..."
+
+apt install -y \
+    clangd \
+    clang-tidy \
+    clang-format \
+    cppcheck
 
 echo "Embedded tools installed."

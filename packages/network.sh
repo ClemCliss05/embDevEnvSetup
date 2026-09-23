@@ -23,7 +23,8 @@ apt update
 
 apt install -y \
     wireshark \
-    tshark
+    tshark \
+    tcpdump
 
 echo ""
 echo "Adding $TARGET_USER to the wireshark group..."
@@ -36,6 +37,7 @@ echo ""
 
 wireshark --version | head -n 1
 tshark --version | head -n 1
+tcpdump --version | head -n 1
 
 echo ""
 echo "User '$TARGET_USER' was added to the wireshark group."

@@ -31,6 +31,7 @@ apt install -y \
     fd-find \
     tmux \
     btop \
-    okular
+    okular \
+    mate-calc
 
 echo "Done."

@@ -11,7 +11,7 @@ A modular Debian workstation setup for embedded systems, C/C++, Python and netwo
 - VS Code with development extensions
 - Docker and Docker Compose
 - Network and protocol analysis
-- Graphics and technical documentation
+- Technical diagrams with draw.io
 
 ## 2. Prerequisites
 
@@ -89,13 +89,15 @@ The setup is divided into independent package modules:
 | `vscode.sh` | Visual Studio Code |
 | `docker.sh` | Docker Engine and Compose |
 | `network.sh` | Wireshark, TShark and TCPDump |
-| `graphics.sh` | Inkscape |
+| `diagrams.sh` | draw.io Desktop |
 
 Individual modules can also be installed separately:
 
 ```bash
-sudo ./packages/graphics.sh
+sudo ./packages/diagrams.sh
 ```
+
+Draw.io is optional and is not installed by the main setup script.
 
 ## 6. VS Code extensions
 
@@ -153,8 +155,12 @@ docker --version
 docker compose version
 wireshark --version
 tshark --version
-# Optional graphics tools
-inkscape --version
+```
+
+Optional tools:
+
+```bash
+drawio --version
 ```
 
 For Docker and Wireshark group permissions, log out and back in after installation.

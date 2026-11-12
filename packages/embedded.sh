@@ -19,7 +19,7 @@ apt install -y \
     openocd \
     picocom \
     usbutils \
-    udev \
+    udev
 
 echo "Installing embedded analysis tools..."
 

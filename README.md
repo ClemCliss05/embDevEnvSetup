@@ -1,284 +1,171 @@
-# Embedded Development Environment
+# Debian Development Environment
 
-Debian-based workstation setup for embedded systems and connected systems development.
+A modular Debian workstation setup for embedded systems, C/C++, Python and network development.
 
-This repository configures a complete development environment for:
+## 1. Features
 
-    ARM Cortex-M development
-    STM32 / NXP firmware development
-    C/C++ embedded projects
-    CMake + Ninja build system
-    GDB debugging
-    J-Link / OpenOCD flashing
-    VS Code development environment
-    Containerized development with Docker
-    Network and protocol analysis with Wireshark
+- ARM Cortex-M development (STM32 / NXP)
+- C/C++ toolchain, CMake and Ninja
+- GDB debugging and OpenOCD flashing
+- Python development environment
+- VS Code with development extensions
+- Docker and Docker Compose
+- Network and protocol analysis
+- Graphics and technical documentation
 
-# 1. Prepare Debian system
+## 2. Prerequisites
 
-Open a terminal and become root:
+Recommended: Debian 13.
 
-```bash
-su -
-```
-
-Update the system:
+Update your system:
 
 ```bash
-apt update
-apt upgrade -y
+sudo apt update
+sudo apt upgrade -y
 ```
 
-Install basic dependencies:
+Install Git and SSH prerequisites:
 
 ```bash
-apt install -y \
-git \
-openssh-client \
-ca-certificates \
-curl \
-wget
+sudo apt install -y \
+    git \
+    openssh-client \
+    ca-certificates \
+    curl
 ```
 
-Return to your user:
-
-```bash
-exit
-```
-
-# 2. Configure Git
-
-Set your Git identity:
+## 3. Git configuration
 
 ```bash
 git config --global user.name "Your Name"
-
 git config --global user.email "your.email@example.com"
-```
 
-Recommended Git settings:
-
-```bash
 git config --global init.defaultBranch main
-
 git config --global pull.rebase true
 ```
 
-Check configuration:
-
-```bash
-git config --list
-```
-
-# 3. Configure GitHub SSH access
-
-Create an SSH key:
-
-```bash
-ssh-keygen -t ed25519 -C "your.email@example.com"
-```
-
-Start SSH agent:
-
-```bash
-eval "$(ssh-agent -s)"
-
-ssh-add ~/.ssh/id_ed25519
-```
-
-Display your public key:
-
-```bash
-cat ~/.ssh/id_ed25519.pub
-```
-
-Add this key to:
-
-```
-GitHub → Settings → SSH and GPG keys → New SSH key
-```
-
-Test connection:
-
-```bash
-ssh -T <yourSSHurl@github.com>
-```
-
-Expected result:
-
-```
-Hi username! You've successfully authenticated.
-```
-
-# 4. Clone repository
-
-Create your workspace:
+## 4. Clone repository
 
 ```bash
 mkdir -p ~/Workspace
-
 cd ~/Workspace
-```
 
-Clone:
-
-```bash
-git clone <yourSSHurl@github.com>
-```
-
-Enter repository:
-
-```bash
+git clone <repository-ssh-url>
 cd devEnvSetup
 ```
 
-# 5. Install development environment
-
-Run installation as root:
+Configure GitHub SSH access using an Ed25519 key:
 
 ```bash
-su -
+ssh-keygen -t ed25519 -C "your.email@example.com"
+
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
 ```
 
-Execute:
+Add the public key to GitHub → Settings → SSH and GPG keys.
+
+Test:
 
 ```bash
-cd /home/<username>/Workspace/devEnvSetup
-
-./install.sh
+ssh -T git@github.com
 ```
 
-This installs:
+## 5. Installation
 
-* GCC
-* ARM GNU Toolchain
-* CMake
-* Ninja
-* GDB
-* OpenOCD
-* Python development tools
-* VS Code
-* Docker
-* Docker Compose
-* Wireshark
-* TShark
-
-# 6. Configure VS Code
-
-Return to your user:
+Run the main installation script from your normal user account:
 
 ```bash
-exit
+sudo ./install.sh
 ```
 
-Install VS Code extensions:
+The setup is divided into independent package modules:
+
+| Script | Purpose |
+|---|---|
+| `base.sh` | Essential development tools and utilities |
+| `embedded.sh` | ARM toolchain, debugging and analysis |
+| `python.sh` | Python development environment |
+| `vscode.sh` | Visual Studio Code |
+| `docker.sh` | Docker Engine and Compose |
+| `network.sh` | Wireshark, TShark and TCPDump |
+| `graphics.sh` | Inkscape |
+
+Individual modules can also be installed separately:
+
+```bash
+sudo ./packages/graphics.sh
+```
+
+## 6. VS Code extensions
+
+Run as your normal user:
 
 ```bash
 ./vscode/installVScodeExtensions.sh
 ```
 
-Installed extensions:
+Configured extensions include:
 
-* C/C++
-* CMake Tools
-* Cortex Debug
-* clangd
-* Hex Editor
-* GitLens
-* Python
+- C/C++
+- CMake Tools
+- Cortex Debug
+- clangd
+- Hex Editor
+- GitLens
+- Python
 
-# 7. Configure Docker
+## 7. Additional tools
 
-Docker is used to run isolated development environments,
-simulators, databases and backend services.
-
-The installation includes:
-
-* Docker Engine
-* Docker Compose
-
-```bash
-docker run hello-world
-```
-
-# 8. Configure network analysis tools
-
-Wireshark and TShark are used for:
-
-    Network debugging
-    TCP/IP analysis
-    WebSocket inspection
-    OCPP traffic analysis
-    Protocol reverse engineering
-
-# 9. Install J-Link
-
-J-Link is a proprietary SEGGER tool.
+### SEGGER J-Link
 
 Installation instructions:
 
-```
+```text
 tools/segger/README.md
 ```
 
-After installation, verify:
+Verify:
 
 ```bash
 JLinkExe
 ```
 
-Expected result:
+### CodeQL
 
+Additional installation and configuration:
+
+```text
+tools/codeql/codeql.sh
 ```
-SEGGER J-Link Commander
-J-Link>
-```
 
-# 10. Verify environment
-
-Check installed tools:
+## 8. Verify installation
 
 ```bash
 gcc --version
-
 arm-none-eabi-gcc --version
-
 cmake --version
-
 ninja --version
-
 gdb-multiarch --version
-
 python3 --version
-
 code --version
-
 docker --version
-
 docker compose version
-
 wireshark --version
-
 tshark --version
+# Optional graphics tools
+inkscape --version
 ```
 
-# 11. Ready for firmware development
+For Docker and Wireshark group permissions, log out and back in after installation.
 
-Your workstation is now ready for:
+## 9. Ready for development
 
-* Embedded firmware development
-* Building C/C++ projects
-* Flashing microcontrollers
-* Debugging with GDB
-* Containerized development
-* Network and protocol analysis
+The workstation is ready for:
 
-Typical workflow:
-
-```bash
-git clone <firmware-project>
-
-cd firmware-project
-```
-
-Flash and debug using project scripts or vscode
+- Embedded firmware development
+- C/C++ and Python projects
+- Hardware debugging and flashing
+- Containerized development
+- Network and protocol analysis
+- Technical diagrams and documentation

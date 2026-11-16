@@ -5,7 +5,7 @@
 
     "cmake.configureOnOpen": true,
 
-    "C_Cpp.default.compilerPath": "/usr/bin/arm-none-eabi-gcc",
+    "C_Cpp.default.compilerPath": "/usr/bin/gcc",
 
     "terminal.integrated.defaultProfile.linux": "bash",
 

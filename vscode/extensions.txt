@@ -1,13 +1,17 @@
+# C/C++ and embedded development
 ms-vscode.cpptools
 ms-vscode.cmake-tools
 marus25.cortex-debug
 ms-vscode.hexeditor
 
+# Git and CI/CD
 eamodio.gitlens
 github.vscode-github-actions
 
+# Documentation and security
 DavidAnson.vscode-markdownlint
-github.vscode-sarif-viewer
+MS-SarifVSCode.sarif-viewer
 
+# Python
 ms-python.python
 ms-python.vscode-pylance

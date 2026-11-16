@@ -10,8 +10,9 @@ A modular Debian workstation setup for embedded systems, C/C++, Python and netwo
 - Python development environment
 - VS Code with development extensions
 - Docker and Docker Compose
-- Network and protocol analysis
-- Technical diagrams with draw.io
+- Network monitoring and protocol analysis
+- Technical diagrams with draw.io (optional)
+- Linux endpoint security and eBPF development (optional)
 
 ## 2. Prerequisites
 
@@ -90,6 +91,7 @@ The setup is divided into independent package modules:
 | `docker.sh` | Docker Engine and Compose |
 | `network.sh` | Wireshark, TShark and TCPDump |
 | `diagrams.sh` | draw.io Desktop |
+| `security.sh` | Linux audit, eBPF and kernel security |
 
 Individual modules can also be installed separately:
 
@@ -160,7 +162,14 @@ tshark --version
 Optional tools:
 
 ```bash
+# Optional: diagrams
 drawio --version
+
+# Optional: Linux security
+auditctl -s
+bpftrace --version
+bpftool version
+clang --version
 ```
 
 For Docker and Wireshark group permissions, log out and back in after installation.
